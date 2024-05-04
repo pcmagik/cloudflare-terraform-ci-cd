@@ -1,30 +1,30 @@
-# Cloudflare Terraform CI/CD — Instalacja cf-terraforming
+# Cloudflare Terraform CI/CD — cf-terraforming Installation
 
-Ten przewodnik pomoże Ci zainstalować narzędzie `cf-terraforming` w systemie Ubuntu, które jest używane do eksportowania konfiguracji Cloudflare do kodu Terraform.
+This guide will help you install the `cf-terraforming` tool on Ubuntu, which is used to export Cloudflare configurations to Terraform code.
 
-## Krok 1: Pobieranie cf-terraforming
+## Step 1: Downloading cf-terraforming
 
-Pobierz najnowszą wersję narzędzia `cf-terraforming` z repozytorium GitHub:
+Download the latest version of the `cf-terraforming` tool from the GitHub repository:
 
 ```bash
 curl -L https://github.com/cloudflare/cf-terraforming/releases/download/v0.19.0/cf-terraforming_0.19.0_linux_amd64.tar.gz -o cf-terraforming.tar.gz
 ```
 
-Rozpakuj pobrane archiwum:
+Unpack the downloaded archive:
 
 ```bash
 tar -xvf cf-terraforming.tar.gz
 ```
 
-Przejdź do katalogu z narzędziem:
+Navigate to the tool directory:
 
 ```bash
 cd cmd/cf-terraforming
 ```
 
-## Krok 2: Instalacja Go
+## Step 2: Installing Go
 
-Aby użyć `cf-terraforming`, potrzebujesz języka Go. Zainstaluj Go korzystając z backports, aby mieć najnowszą dostępną wersję:
+To use `cf-terraforming`, you need the Go language. Install Go using backports to get the latest available version:
 
 ```bash
 sudo add-apt-repository ppa:longsleep/golang-backports
@@ -32,66 +32,43 @@ sudo apt update
 sudo apt install golang-go
 ```
 
-Sprawdź wersję Go, aby upewnić się, że instalacja przebiegła pomyślnie:
+Check the Go version to ensure the installation was successful:
 
 ```bash
 go version
 ```
 
-## Krok 3: Kompilacja cf-terraforming
+## Step 3: Compiling cf-terraforming
 
-Kompiluj `cf-terraforming` używając Go:
+Compile `cf-terraforming` using Go:
 
 ```bash
 go build .
 ```
 
-## Krok 4: Instalacja cf-terraforming
+## Step 4: Installing cf-terraforming
 
-Przenieś skompilowany plik do katalogu systemowego, aby był dostępny globalnie:
+Move the compiled file to the system directory to make it globally available:
 
 ```bash
 sudo mv ./cf-terraforming /usr/local/bin/
 ```
 
-Nadaj plikowi prawa do wykonania:
+Give the file execution rights:
 
 ```bash
 sudo chmod +x /usr/local/bin/cf-terraforming
 ```
 
-## Krok 5: Sprawdzenie instalacji
+## Step 5: Checking the installation
 
-Sprawdź, czy `cf-terraforming` został poprawnie zainstalowany i jest gotowy do użycia:
+Check if `cf-terraforming` has been correctly installed and is ready to use:
 
 ```bash
 cf-terraforming --help
 ```
 
-Używając powyższych instrukcji, `cf-terraforming` zostanie zainstalowany i skonfigurowany w Twoim systemie Ubuntu, gotowy do eksportowania konfiguracji Cloudflare do Terraform.
+Using the above instructions, `cf-terraforming` will be installed and configured in your Ubuntu system, ready to export Cloudflare configurations to Terraform.
 
 
-```bash
-cf-terraforming generate \
-  --resource-type "cloudflare_record" \
-  --zone $CLOUDFLARE_ZONE_ID > imported.tf
-```
-
-#### Look at the file and copy the contents into your cloudflare.tf , then run:
-
-`terraform plan`
-
-
-
-```bash
-cf-terraforming import \
-  --resource-type "cloudflare_record" \
-  --zone $CLOUDFLARE_ZONE_ID
-```
-This will export a lot of commands, we now need to run them to import them into our state.
-
-All you need to do it `copy` and `paste` the commands into your terminal.
-
-This will import your local state, you can see it in `terraform.tfstate`
-
-If we run terraform plan now, we can see that there aren’t any changes.
+[🇵🇱 Polish version of this file](README_PL.md)
