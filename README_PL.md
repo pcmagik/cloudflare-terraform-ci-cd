@@ -81,8 +81,6 @@ cf-terraforming generate \
 
 `terraform plan`
 
-
-
 ```bash
 cf-terraforming import \
   --resource-type "cloudflare_record" \
@@ -95,5 +93,23 @@ All you need to do it `copy` and `paste` the commands into your terminal.
 This will import your local state, you can see it in `terraform.tfstate`
 
 If we run terraform plan now, we can see that there aren’t any changes.
+
+---
+### Then we need to updated our .zshrc or .bashrc with our variables
+
+
+```bash
+nano ~/.bashrc
+```
+
+```bash
+export CLOUDFLARE_API_TOKEN='12345'
+export CLOUDFLARE_ZONE_ID='abcde'
+```
+The source your shell
+```bash
+source ~/.bashrc
+```
+
 
 [🇬🇧 English version of this file](README.md)
