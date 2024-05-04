@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: 'Manual install Terraform'
 
 on:
   push:
