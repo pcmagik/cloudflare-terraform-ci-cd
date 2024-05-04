@@ -20,5 +20,5 @@ sudo mv ./cf-terraforming /usr/local/bin/
 
 sudo chmod +x /usr/local/bin/cf-terraforming 
 
-cf-terraforming# cloudflare-terraform-ci-cd
+cf-terraforming --help
 
