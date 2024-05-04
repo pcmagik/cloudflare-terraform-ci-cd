@@ -69,3 +69,29 @@ cf-terraforming --help
 ```
 
 Używając powyższych instrukcji, `cf-terraforming` zostanie zainstalowany i skonfigurowany w Twoim systemie Ubuntu, gotowy do eksportowania konfiguracji Cloudflare do Terraform.
+
+
+```bash
+cf-terraforming generate \
+  --resource-type "cloudflare_record" \
+  --zone $CLOUDFLARE_ZONE_ID > imported.tf
+```
+
+#### Look at the file and copy the contents into your cloudflare.tf , then run:
+
+`terraform plan`
+
+
+
+```bash
+cf-terraforming import \
+  --resource-type "cloudflare_record" \
+  --zone $CLOUDFLARE_ZONE_ID
+```
+This will export a lot of commands, we now need to run them to import them into our state.
+
+All you need to do it `copy` and `paste` the commands into your terminal.
+
+This will import your local state, you can see it in `terraform.tfstate`
+
+If we run terraform plan now, we can see that there aren’t any changes.
